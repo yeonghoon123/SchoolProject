@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-image: url("배경.jpeg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 100%;
+        height: 100vh;
+        background-size: 100% 100%;
+      }
+      /* 로고 */
+      #logo {
+        position: fixed;
+        left: 29.5%;
+      }
+      /* 이름 */
+      #name {
+        font-size: 60px;
+        line-height: 125px;
+        margin-left: 15px;
+        float: left;
+        font-family: "문체부 훈민정음체";
+      }
+      #name::after {
+        content: "";
+        display: inline-block;
+        clear: both;
+      }
+      /* 선 */
+      #line {
+        position: fixed;
+        top: 18%;
+        left: 25.5%;
+        width: 785px;
+      }
+      #menu {
+        position: fixed;
+        top: 20%;
+        left: 26.5%;
+      }
+      .mn {
+        font-size: 30px;
+      }
+      a {
+        content: none;
+        text-decoration: none;
+        color: black;
+      }
+      a:hover {
+        color: black;
+      }
+      #mn2,
+      #mn3,
+      #mn4 {
+        margin-left: 80px;
+      }
+      #number {
+        font-size: 11px;
+        position: fixed;
+        top: 97%;
+        left: 48%;
+      }
+      #background {
+        position: fixed;
+        top: 0%;
+        left: 18%;
+        width: 1000px;
+        height: 100vh;
+        border: 1px solid black;
+        background-color: white;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이서방 왕족발</title>
+  </head>
+  <body>
+    <div id="background">
+      <div id="logo">
+        <img src="이서방로고.png" alt="" style="width: 120px; float: left;" />
+        <span id="name"
+          >이서방
+          <span style="color: red; font-weight: bold;">왕</span>족발<span
+            style="color: #ffbf00; font-weight: bold;"
+            >보쌈</span
+          ></span
+        >
+      </div>
+      <div id="line"><hr /></div>
+      <div id="menu">
+        <a href="menu.html" class="mn" id="mn1">메뉴</a>
+        <a href="리뷰.html" class="mn" id="mn2">리뷰</a>
+        <a href="영상.html" class="mn" id="mn3">방송 보기</a>
+        <a href="길찾기.html" class="mn" id="mn4">경력 및 오시는 길</a>
+      </div>
+      <div id="number">
+        <span id="num">No. 031-233-5515</span>
+      </div>
+    </div>
+  </body>
+</html>

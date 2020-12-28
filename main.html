@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>선생님 몰래 춤추기</title>
+  <style>
+    body {
+      background-image: url("C:/Users/김영훈/Downloads/배경.png");
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100vh;
+      background-size: 80% 100%;
+      background-attachment: fixed;
+      background-position: center;
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    #start {
+      position: fixed;
+      top: 15%;
+      left: 40%;
+    }
+
+    .btn {
+      width: 300px;
+      height: 70px;
+      border: none;
+      background-color: transparent;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      cursor: pointer;
+      color: yellow;
+    }
+
+    #rule {
+      position: fixed;
+      top: 28%;
+      left: 40%;
+    }
+
+    #게임방법창 {
+      visibility: hidden;
+      position: fixed;
+      top: 20%;
+      left: 30%;
+      width: 600px;
+      height: 450px;
+      border: 1px solid black;
+      background-color: white;
+      opacity: 0.85;
+    }
+
+    .num,
+    #last {
+      font-weight: bold;
+      font-size: 28px;
+    }
+
+    p {
+      font-size: 23px;
+      text-align: center;
+    }
+
+    #point {
+      visibility: hidden;
+      position: fixed;
+      top: 1%;
+      left: 11%;
+      font-size: 35px;
+      font-weight: bold;
+    }
+
+    #gage {
+      position: fixed;
+      top: 3%;
+      left: 40%;
+      display: inline-block;
+      width: 700px;
+      height: 30px;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+      visibility: hidden;
+    }
+
+    #charge {
+      height: 30px;
+      background-color: red;
+      display: inline-block;
+      visibility: hidden;
+    }
+
+    #게임결과 {
+      visibility: hidden;
+      position: fixed;
+      top: 20%;
+      left: 30%;
+      width: 600px;
+      height: 450px;
+      border: 1px solid black;
+      background-color: white;
+      opacity: 0.85;
+    }
+
+    #regame {
+      position: fixed;
+      top: 50%;
+      left: 40%;
+      width: 300px;
+      height: 70px;
+      border: none;
+      background-color: transparent;
+      font-size: 40px;
+      font-weight: bold;
+    }
+
+    #regame:hover {
+      cursor: pointer;
+      color: rgba(0, 0, 0, 0.3);
+    }
+
+    #선생님,
+    #선생님2 {
+      visibility: hidden;
+      position: fixed;
+      top: 23%;
+      left: 40%;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    #춤1 {
+      position: fixed;
+      top: 60%;
+      left: 12%;
+      visibility: hidden;
+    }
+
+    #춤2 {
+      position: fixed;
+      top: 60%;
+      left: 65%;
+      visibility: hidden;
+    }
+
+    #춤3 {
+      position: fixed;
+      top: 28%;
+      left: 35%;
+      visibility: hidden;
+    }
+
+    #가만히있기1 {
+      position: fixed;
+      top: 60%;
+      left: 12%;
+      visibility: hidden;
+    }
+
+    #가만히있기2 {
+      position: fixed;
+      top: 60%;
+      left: 65%;
+      visibility: hidden;
+    }
+
+    #가만히있기3 {
+      position: fixed;
+      top: 60%;
+      left: 40%;
+      visibility: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="point">
+    <span id="score"></span>
+  </div>
+  <div id="gage">
+    <div id="charge"></div>
+  </div>
+  <button class="btn" id="start">게임시작</button>
+  <button class="btn" id="rule">게임 방법</button>
+  <audio id="노래" src="./노래1.mp3"></audio>
+  <div id="게임방법창">
+    <p>
+      <span class="num">1.</span> 선생님이 칠판을 볼때 space바를 눌러 춤을
+      추세요.
+    </p>
+
+    <br />
+    <p style="font-size: 21px;">
+      <span class="num">2.</span> 만약 선생님이 뒤돌아 볼경우 space바를 떼서
+      멈추세요.
+    </p>
+
+    <br />
+    <p>
+      <span class="num">3.</span> 걸리면 선생님한테 왕창 혼나니 조심하세요.
+    </p>
+
+    <br />
+    <br />
+    <p id="last" style="text-align: center;">
+      점수를 많이 올려 사람들을 이겨보세요.
+    </p>
+  </div>
+  <div id="게임결과">
+    <p>점수 : <span id="점수"></span> 점 입니다.</p>
+    <button id="regame">다시하기</button>
+  </div>
+  <div id="선생님">
+    <img id="화난 선생님" src="선생님1.png" alt="" style="width: 300px;" />
+  </div>
+  <div id="선생님2">
+    <img id="뒤돈 선생님" src="선생님2.png" alt="" style="width: 300px;" />
+  </div>
+  <div id="춤1">
+    <img src="1슬라임.gif" alt="" style="width: 300px;" />
+  </div>
+  <div id="춤2">
+    <img src="앞공.gif" alt="" width="300px" />
+  </div>
+  <div id="춤3">
+    <img src="뿅.gif" alt="" width="500px" />
+  </div>
+  <div id="가만히있기1">
+    <img src="KakaoTalk_20200811_105048023.png" alt="" width="300px" />
+  </div>
+
+  <div id="가만히있기2">
+    <img src="KakaoTalk_20200811_105048023.png" alt="" width="300px" />
+  </div>
+  <div id="가만히있기3">
+    <img src="KakaoTalk_20200811_105048023.png" alt="" width="300px" />
+  </div>
+  <script>
+    const rule = document.getElementById("rule");
+    const 게임방법창 = document.getElementById("게임방법창");
+    const start = document.getElementById("start");
+    const regame = document.getElementById("regame");
+    const body = document.querySelector("body");
+    const point = document.getElementById("point");
+    const score = document.getElementById("score");
+    const tool = document.getElementById("gage");
+    const charge = document.getElementById("charge");
+    const 게임결과 = document.getElementById("게임결과");
+    const 점수 = document.getElementById("점수");
+    const 화난선생님 = document.getElementById("선생님");
+    const 뒤돈선생님 = document.getElementById("선생님2");
+    const 가만히1 = document.getElementById("가만히있기1");
+    const 가만히2 = document.getElementById("가만히있기2");
+    const 가만히3 = document.getElementById("가만히있기3");
+    const 춤1 = document.getElementById("춤1");
+    const 춤2 = document.getElementById("춤2");
+    const 춤3 = document.getElementById("춤3");
+    const event = async () => {
+      window.addEventListener("keydown", evently)
+
+    }
+    let 선생님 = [뒤돈선생님, 화난선생님]
+
+
+    let 노래 = document.getElementById("노래");
+    let box;
+    let minus;
+    let plus;
+    let num;
+    let teacher;
+    let go = 0;
+    let over = 0;
+    score.innerText = 0;
+    점수.innerText = 0;
+    //게임 시작
+    start.addEventListener("click", (e) => {
+      start.style.visibility = "hidden";
+      rule.style.visibility = "hidden";
+      point.style.visibility = "visible";
+      charge.style.visibility = "visible";
+      tool.style.visibility = "visible";
+      선생님[0].style.visibility = "visible";
+      가만히1.style.visibility = "visible";
+      가만히2.style.visibility = "visible";
+      가만히3.style.visibility = "visible";
+      charge.style.width = "700px";
+      //점수 감소
+      minus = setInterval(() => {
+        let cut = charge.style.width.indexOf("p");
+        let gage = charge.style.width.slice(0, cut);
+        charge.style.width = Number(gage) - 0.7 + "px";
+        if (gage < 0.7) {
+          gameover();
+          선생님[0].style.display = "none"
+          선생님[1].style.display = "none"
+        }
+      }, 1);
+
+      //선생님 뒤도는 횟수
+
+      //점수 증가
+      num = setInterval(() => {
+        score.innerText = Number(score.innerText) + 1;
+      }, 100);
+      go = 1;
+      function evently() {
+        over = 1
+        clearInterval(tch)
+        선생님[0].style.display = "none"
+        선생님[1].style.display = "none"
+      }
+
+      let tch = setInterval(() => {
+        let random = Math.floor(Math.random() * 4 + 1);
+
+        if (box != random) {
+          box = random
+          if (box == 4) {
+            event()
+            선생님[0].style.visibility = "hidden"
+            선생님[1].style.visibility = "visible"
+            setTimeout(() => {
+
+              if (over === 0) {
+                setTimeout(() => {
+                  선생님[0].style.visibility = "visible"
+                  선생님[1].style.visibility = "hidden"
+                  over = 0
+
+                }, 800);
+              }
+
+
+            }, 350);
+            removeEventListener(event())
+          }
+          console.log(box)
+
+
+
+
+
+        }
+
+      }, 1000)
+
+    });
+    //뒤돌기
+
+    regame.addEventListener("click", (e) => {
+      location.reload()
+      // document.location.reload()
+      // rule.style.visibility = "hidden";
+      // point.style.visibility = "visible";
+      // charge.style.visibility = "visible";
+      // tool.style.visibility = "visible";
+      // 선생님[0].style.visibility = "visible";
+      // 선생님[1].style.visibilit = "hidden";
+      // 가만히1.style.visibility = "visible";
+      // 가만히2.style.visibility = "visible";
+      // 가만히3.style.visibility = "visible";
+      // 게임결과.style.visibility = "hidden";
+      // over = 0
+      // box = 0
+
+      // charge.style.width = "700px";
+      // score.innerText = 0;
+      // 점수.innerText = 0;
+      // function evently() {
+      //   over = 1
+      //   clearInterval(tch)
+      // }
+
+      // let tch = setInterval(() => {
+      //   let random = Math.floor(Math.random() * 4 + 1);
+
+      //   if (box != random) {
+      //     box = random
+      //     console.log(box)
+      //     if (box == 4) {
+      //       선생님[0].style.visibility = "hidden"
+      //       선생님[1].style.visibility = "visible"
+      //       setTimeout(() => {
+      //         window.addEventListener("keydown", evently)
+
+      //         if (over === 1) {
+      //           setTimeout(() => {
+      //             선생님[0].style.visibility = "visible"
+      //             선생님[1].style.visibility = "hidden"
+      //             over = 0
+      //             window.removeEventListener("keydown", evently)
+      //           }, 800);
+      //         }
+      //       }, 350);
+      //     }
+
+
+
+
+
+
+      //   }
+      // }, 1000)
+
+      // //점수 감소
+      // minus = setInterval(() => {
+      //   let cut = charge.style.width.indexOf("p");
+      //   let gage = charge.style.width.slice(0, cut);
+      //   charge.style.width = Number(gage) - 0.7 + "px";
+      //   if (gage < 0.7 || over === 1) {
+      //     gameover();
+
+      //   }
+      // }, 1);
+
+      // //선생님 뒤도는 횟수
+
+      // //점수 증가
+      // num = setInterval(() => {
+      //   score.innerText = Number(score.innerText) + 1;
+      // }, 100);
+      // go = 1;
+    });
+    //게임방법창
+    rule.addEventListener("click", (e) => {
+      게임방법창.style.visibility = "visible";
+    });
+    // 게임방법창 제거
+    rule.addEventListener("blur", (e) => {
+      게임방법창.style.visibility = "hidden";
+    });
+    //게이지 증가
+    window.addEventListener("keydown", (e) => {
+      if (e.code === "Space") {
+
+        if (go === 1) {
+          노래.play();
+          clearInterval(minus);
+          Audio;
+          가만히1.style.visibility = "hidden";
+          가만히2.style.visibility = "hidden";
+          가만히3.style.visibility = "hidden";
+          춤1.style.visibility = "visible";
+          춤2.style.visibility = "visible";
+          춤3.style.visibility = "visible";
+          let cut = charge.style.width.indexOf("p");
+          let gage = charge.style.width.slice(0, cut);
+          if (gage < 700) charge.style.width = Number(gage) + 8 + "px";
+
+          if (gage < 0.7 || over === 1) {
+            gameover();
+            선생님[0].style.display = "none"
+            선생님[1].style.display = "none"
+          }
+        }
+      }
+    });
+    //게이지 감소
+    window.addEventListener("keyup", (e) => {
+      if (e.code === "Space") {
+        if (go === 1) {
+          노래.pause();
+          노래 = new Audio();
+          노래.src = "./노래1.mp3";
+          가만히1.style.visibility = "visible";
+          가만히2.style.visibility = "visible";
+          가만히3.style.visibility = "visible";
+          춤1.style.visibility = "hidden";
+          춤2.style.visibility = "hidden";
+          춤3.style.visibility = "hidden";
+          minus = setInterval(() => {
+            let cut = charge.style.width.indexOf("p");
+            let gage = charge.style.width.slice(0, cut);
+            charge.style.width = Number(gage) - 0.7 + "px";
+            if (gage < 0.7 || over === 1) {
+              gameover();
+              선생님[0].style.display = "none"
+              선생님[1].style.display = "none"
+            }
+          }, 1);
+          clearInterval(plus);
+        }
+      }
+    });
+    function gameover() {
+      점수.innerText = score.innerText;
+      clearInterval(minus);
+      clearInterval(num);
+      clearInterval(teacher);
+
+      point.style.visibility = "hidden";
+      charge.style.visibility = "hidden";
+      tool.style.visibility = "hidden";
+      게임결과.style.visibility = "visible";
+      선생님[0, 1].style.visibility = "hidden";
+      가만히1.style.visibility = "hidden";
+      가만히2.style.visibility = "hidden"
+      가만히3.style.visibility = "hidden";
+      춤1.style.visibility = "hidden";
+      춤2.style.visibility = "hidden";
+      춤3.style.visibility = "hidden";
+      노래.pause();
+      노래 = new Audio();
+      노래.src = "./노래1.mp3";
+      go = 0;
+    }
+
+  </script>
+</body>
+
+</html>
